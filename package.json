@@ -1,6 +1,6 @@
 {
-  "name": "micTool",
-  "description": "Mic recording utility.",
+  "name": "VueTemplate",
+  "description": "Vue Boilerplate with GH-pages deployment built in.",
   "version": "1.0.0",
   "author": "Sina Sabet <sinasabet81@gmail.com>",
   "private": true,
