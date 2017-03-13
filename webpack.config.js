@@ -1,6 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 
+// workaround for windows subsystem linux
+try {
+  require('os').networkInterfaces();
+} catch (e) {
+  require('os').networkInterfaces = () => ({});
+}
+
 module.exports = {
   entry: './src/main.js',
   output: {
