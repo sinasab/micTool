@@ -1,32 +1,22 @@
 <template>
   <div id="app">
-    <h1>{{msg}}</h1>
-    <Indicator
-      :is-recording="isRecording"
+    <h1>ayy lmao</h1>
+    <Recorder
       @click.native="toggleRecording"
-    ></Indicator>
+    ></Recorder>
   </div>
 </template>
 
 <script>
-import Indicator from './Indicator.vue'
+import Recorder from './Recorder.vue'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      msg: 'Hi',
-      isRecording: false
-    }
-  },
   components: {
-    Indicator
+    Recorder
   },
-  methods: {
-    toggleRecording(e) {
-      this.isRecording = !this.isRecording;
-    }
-  }
+  methods: mapMutations(['toggleRecording'])
 }
 </script>
 
