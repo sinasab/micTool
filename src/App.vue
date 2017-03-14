@@ -1,16 +1,23 @@
 <template>
   <div id="app">
     <h1>{{msg}}</h1>
+    <Indicator :is-recording="isRecording"></Indicator>
   </div>
 </template>
 
 <script>
+import Indicator from './Indicator.vue'
+
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      isRecording: false
     }
+  },
+  components: {
+    Indicator
   }
 }
 </script>
