@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="indicator" :class="classObject">
   {{statusIcon}}
 </div>
 </template>
@@ -12,12 +12,29 @@ export default {
   },
   computed: {
     statusIcon() {
-      return this.isRecording ? 'on' : 'off';
+      return this.isRecording ? 'recording' : 'off';
+    },
+    classObject() {
+      return {
+        isRecording: this.isRecording,
+        notRecording: !this.isRecording
+      };
     }
   }
 }
 </script>
 
 <style scoped>
-
+div#indicator {
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+div.isRecording {
+  background-color: orangered;
+}
+div.notRecording {
+  background-color: lightblue;
+}
 </style>
