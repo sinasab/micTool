@@ -8,7 +8,10 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --content-base dist/ --open --hot",
     "start": "npm run dev",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "bigdeploy": "yarn run nuke && yarn run clean && yarn install && yarn run build && yarn run deploy",
+    "clean": "rm -rf ./dist",
+    "nuke": "rm -rf ./node_modules"
   },
   "dependencies": {
     "vue": "^2.2.1",
