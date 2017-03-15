@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 const state = {
   isRecording: false,
-  recordingInstance: undefined,
-  recordings: []
+  current_recording: undefined,
+  recording_urls: ['http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-ulaw.wav']
 }
 
 const mutations = {

@@ -1,28 +1,38 @@
 <template>
   <div id="app">
     <h1>ayy lmao</h1>
-    <Recorder v-if="hasGetUserMedia"></Recorder>
+    <Recorder v-if="compatibilityCheck"></Recorder>
     <Fallback v-else></Fallback>
+    <AudioRecording
+      v-for="(url, i) in recording_urls"
+      :url="url"
+      :key="'recording_' + i">
+    </AudioRecording>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
-import Fallback from './Fallback.vue'
 import Recorder from './Recorder.vue'
-import { hasGetUserMedia } from './getUserMediaInterface'
+import Fallback from './Fallback.vue'
+import AudioRecording from './AudioRecording.vue'
+import { compatibilityCheck } from './getUserMediaInterface'
 
 export default {
   name: 'app',
   data() {
     return {
-      hasGetUserMedia: hasGetUserMedia()
+      compatibilityCheck: compatibilityCheck()
     }
   },
+  computed: mapState({
+    recording_urls: state => state.recording_urls.slice().reverse()
+  }),
   components: {
+    Recorder,
     Fallback,
-    Recorder
+    AudioRecording
   },
 }
 </script>
