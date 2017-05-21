@@ -5,13 +5,12 @@ Vue.use(Vuex);
 
 const state = {
   isRecording: false,
-  current_recording: undefined,
-  recording_urls: ['http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-ulaw.wav']
+  recording_urls: []
 }
 
 const mutations = {
   toggleRecording: state => state.isRecording = !state.isRecording,
-  updateRecordingInstance: (state, payload) => state.recordingInstance = payload
+  addRecordingURL: (state, payload) => state.recording_urls.push(payload)
 }
 
 export default new Vuex.Store({

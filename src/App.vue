@@ -6,6 +6,7 @@
     <AudioRecording
       v-for="(url, i) in recording_urls"
       :url="url"
+      :recnum="i"
       :key="'recording_' + i">
     </AudioRecording>
   </div>
@@ -17,7 +18,8 @@ import { mapMutations, mapState } from 'vuex'
 import Recorder from './Recorder.vue'
 import Fallback from './Fallback.vue'
 import AudioRecording from './AudioRecording.vue'
-import { compatibilityCheck } from './getUserMediaInterface'
+
+import { compatibilityCheck } from './audioInterface'
 
 export default {
   name: 'app',

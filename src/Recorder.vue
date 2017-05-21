@@ -1,24 +1,24 @@
 <template>
 <div id="recorder_root" >
+  <Visualizer :recording="recorder"></Visualizer>
   <button id="record_button" :class="classObject" @click="buttonHandler">
     {{statusIcon}}
   </button>
-  <audio id="current_recording" controls>
-    <source></source>
-    Your browser doesn't support the audio element :(
-  </audio>
 </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { initializeStream } from './getUserMediaInterface'
+
+import Visualizer from './Visualizer.vue';
+import { getStream } from './audioInterface';
 
 export default {
   name: 'recorder',
   data() {
     return {
-      stream: undefined,
+      recorder: undefined,
+      chunks: [],
     }
   },
   computed: mapState({
@@ -31,16 +31,34 @@ export default {
       return state.isRecording ? this.stopRecording : this.startRecording;
     },
   }),
+  components: {
+    Visualizer,
+  },
   methods: {
-    ...mapMutations(['toggleRecording']),
+    ...mapMutations(['toggleRecording', 'addRecordingURL']),
     startRecording(e) {
       this.toggleRecording();
-      this.stream = startStream();
-      console.log('started recording');
+      this.chunks = [];
+      getStream()
+        .then(recorder => {
+          recorder.ondataavailable = e => {
+            this.chunks.push(e.data)
+          }
+          recorder.onstop = e => {
+            const blob = new Blob(this.chunks, { 'type': 'audio/webm' });
+            const audioURL = window.URL.createObjectURL(blob);
+            this.addRecordingURL(audioURL);
+            console.log(audioURL);
+          }
+
+          recorder.start();
+          this.recorder = recorder;
+        });
     },
     stopRecording(e) {
       this.toggleRecording();
-      console.log('stopped recording');
+      this.recorder.stream.getTracks()[0].stop();
+      this.recorder.stop();
     }
   },
 }

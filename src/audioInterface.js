@@ -1,4 +1,3 @@
-// gross, side effects!
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -14,14 +13,8 @@ export function compatibilityCheck() {
   return hasGetUserMedia() && hasAudioContext();
 }
 
-export function startStream() {
-  // const audioContext = new AudioContext(
-  //   document.querySelector('#current_recording')
-  // );
+export function getStream() {
   return navigator.mediaDevices.getUserMedia({audio: true})
-    // .then(stream => {
-    //   const mediaStreamSource = audioContext.createMediaStreamSource(stream);
-    //   mediaStreamSource.connect(audioContext.destination);
-    // })
+    .then(stream => new MediaRecorder(stream))
     .catch(console.error);
 }

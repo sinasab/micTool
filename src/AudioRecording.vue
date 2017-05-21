@@ -1,7 +1,8 @@
 <template>
 <div class="audio_recording_root" >
-  <audio class="recorded_audio" controls>
-    <source :src="url"></source>
+  <audio class="recorded_audio" controls controlslist="download" preload="auto">
+    <source :src="url" type="audio/webm"></source>
+    <a :href="url" :download="recnum + '.webm'">Direct Link</a>
     Your browser doesn't support the audio element :(
   </audio>
 </div>
@@ -9,9 +10,10 @@
 
 <script>
 export default {
-  name: 'recorder',
+  name: 'audio_recording',
   props: {
     url: String,
+    recnum: Number,
   },
 }
 </script>

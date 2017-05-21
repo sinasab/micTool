@@ -1,7 +1,6 @@
-# Vue-Template
+# micTool
 
-> Customized Vue Boilerplate with Github-pages deployment built in.
-
+basically https://github.com/mdn/web-dictaphone
 ## Build Setup
 
 ``` bash
@@ -17,5 +16,3 @@ npm run build
 # deploy to gh-pages branch
 npm run deploy
 ```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
