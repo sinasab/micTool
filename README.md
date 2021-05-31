@@ -1,3 +1,5 @@
+# Project archived as of 31 May 2021
+
 # micTool
 
 basically https://github.com/mdn/web-dictaphone
